@@ -10,7 +10,6 @@ lapply(lista.de.pacotes, require, character.only = TRUE)
 my.path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(my.path)
 ## Nearest neignboor
-library(class)
 pred <- knn(train = , test = , training_label)
 
 ## Read the data
@@ -26,7 +25,6 @@ table(signs$sign_type)
 aggregate(r10 ~ sign_type, data = signs, mean)
 
 # Create train and test data
-library(data.table)
 smp_size<-150
 train_ind <- sample(seq_len(nrow(signs)), size = smp_size)
 
@@ -49,6 +47,11 @@ mean(signs_pred == signs_actual)
 k_1 <- knn(train = train_signs[,-c(1:3)], test = test_signs[,-c(1:3)], cl = sign_types)
 mean(k_1==signs_actual)
 table(k_1, signs_actual)
+
+# Compute the accuracy of the baseline model k = 2
+k_2 <- knn(train = train_signs[,-c(1:3)], test = test_signs[,-c(1:3)], cl = sign_types, k=2)
+mean(k_2==signs_actual)
+table(k_2, signs_actual)
 
 # Modify the above to set k = 7
 k_7 <- knn(train = train_signs[,-c(1:3)], test = test_signs[,-c(1:3)], cl = sign_types, k=7)
@@ -85,3 +88,7 @@ mean(k_norm==signs_actual)
 
 k_norm_7 <- knn(train = new_data_train, test = new_data_test, cl = sign_types, k=7)
 mean(k_norm_7==signs_actual)
+
+k_norm_3 <- knn(train = new_data_train, test = new_data_test, cl = sign_types, k=3)
+mean(k_norm_3==signs_actual)
+table(k_norm_3, signs_actual)
