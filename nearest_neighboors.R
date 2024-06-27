@@ -1,11 +1,17 @@
 ## Aprendnedo machine learning no software R ##
+# Instalacao e carregamento dos pacotes
+lista.de.pacotes <- c("data.table","class")
+novos.pacotes <- lista.de.pacotes[!(lista.de.pacotes %in% installed.packages()[,"Package"])]
+if(length(novos.pacotes)) install.packages(novos.pacotes)
+lapply(lista.de.pacotes, require, character.only = TRUE)
 
+# Definicao da trilha de dados
+# Definindo a trilha SE o script estiver dentro da pasta
+my.path <- dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(my.path)
 ## Nearest neignboor
 library(class)
 pred <- knn(train = , test = , training_label)
-
-## Define the path
-setwd("C:/Users/juanf/OneDrive/Documentos/curriculo/moocs/machine learning com R/ML Clasificação/modulo1")
 
 ## Read the data
 signs<-read.table("signs.txt",h=T,sep=",")
