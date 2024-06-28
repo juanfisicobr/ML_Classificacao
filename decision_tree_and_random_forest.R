@@ -65,13 +65,14 @@ table(loans_test$pred, loans_test$Outcome)
 # Compute the accuracy on the test dataset
 mean(loans_test$Outcome==loans_test$pred)
 
+
 # pre-pruning with repair
 # prune_control=rpart.control(maxDepth = 30, minsplit = 20)
 # m <- rpart(repaid - credit_score + request_amt,
 #            data = loans,
 #            method="class",
 #            control = prune_control)
-
+#
 # post-pruning with repair
 # m <- rpart(repaid - credit_score + request_amt,
 #            data = loans,
